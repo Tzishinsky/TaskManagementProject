@@ -1,0 +1,303 @@
+<div class="card shadow-sm border-0 border-top border-primary border-4">
+
+  <div class="card-header bg-white border-0 pt-4 px-4">
+    <h2 class="h5 fw-bold text-primary mb-0">
+      @if (isEditMode()) {
+         {{ text.form.editTitle }}
+      } @else {
+         {{ text.form.addTitle  }}
+      }
+    </h2>
+  </div>
+
+  <div class="card-body p-4">
+
+    @if (errorMessage()) {
+      <div
+        class="alert alert-danger"
+        role="alert">
+
+        {{ errorMessage() }}
+
+      </div>
+    }
+
+    <form
+      [formGroup]="taskForm"
+      (ngSubmit)="onSubmit()"
+      novalidate>
+
+      <div class="mb-4">
+
+        <label
+          for="title"
+          class="form-label fw-semibold">
+
+          {{ text.form.title }}
+
+        </label>
+
+        <input
+          id="title"
+          type="text"
+          class="form-control"
+          formControlName="title"
+          [class.is-invalid]="
+            (titleControl.invalid && titleControl.touched) ||
+            getFieldErrors('Title').length > 0
+          " />
+
+        @if (
+          titleControl.invalid &&
+          titleControl.touched
+        ) {
+
+          <div class="invalid-feedback">
+
+            @if (titleControl.hasError('required')) {
+              {{ text.validation.titleRequired }}
+            }
+
+            @if (titleControl.hasError('maxlength')) {
+              {{ text.validation.titleMaxLength }}
+            }
+
+          </div>
+
+        }
+
+        @if (getFieldErrors('Title').length > 0) {
+
+          <div class="invalid-feedback d-block">
+
+            @for (
+              error of getFieldErrors('Title');
+              track error
+            ) {
+              <div>{{ error }}</div>
+            }
+
+          </div>
+
+        }
+
+      </div>
+
+      <div class="mb-4">
+
+        <label
+          for="description"
+          class="form-label fw-semibold">
+
+         {{ text.form.description }}
+
+        </label>
+
+        <textarea
+          id="description"
+          class="form-control"
+          rows="4"
+          formControlName="description"
+          [class.is-invalid]="
+            getFieldErrors('Description').length > 0
+          "></textarea>
+
+        @if (getFieldErrors('Description').length > 0) {
+
+          <div class="invalid-feedback d-block">
+
+            @for (
+              error of getFieldErrors('Description');
+              track error
+            ) {
+              <div>{{ error }}</div>
+            }
+
+          </div>
+
+        }
+
+      </div>
+
+      
+      <div class="row g-3">
+
+       
+        <div class="col-12 col-md-6">
+
+          <div class="mb-4">
+
+            <label
+              for="priority"
+              class="form-label fw-semibold">
+
+             {{ text.form.priority }}
+
+            </label>
+
+            <select
+              id="priority"
+              class="form-select"
+              formControlName="priority"
+              [class.is-invalid]="
+                getFieldErrors('Priority').length > 0
+              ">
+
+              @for (
+                priority of priorities;
+                track priority
+              ) {
+
+                <option [value]="priority">
+                     {{ priorityLabels[priority] }}
+                </option>
+
+              }
+
+            </select>
+
+            @if (getFieldErrors('Priority').length > 0) {
+
+              <div class="invalid-feedback d-block">
+
+                @for (
+                  error of getFieldErrors('Priority');
+                  track error
+                ) {
+                  <div>{{ error }}</div>
+                }
+
+              </div>
+
+            }
+
+          </div>
+
+        </div>
+
+        <div class="col-12 col-md-6">
+
+          <div class="mb-4">
+
+            <label
+              for="dueDate"
+              class="form-label fw-semibold">
+
+              {{ text.form.dueDate }}
+
+            </label>
+
+            <input
+              id="dueDate"
+              type="date"
+              class="form-control"
+              formControlName="dueDate"
+              [class.is-invalid]="
+                getFieldErrors('DueDate').length > 0
+              " />
+
+            @if (getFieldErrors('DueDate').length > 0) {
+
+              <div class="invalid-feedback d-block">
+
+                @for (
+                  error of getFieldErrors('DueDate');
+                  track error
+                ) {
+                  <div>{{ error }}</div>
+                }
+
+              </div>
+
+            }
+
+          </div>
+
+        </div>
+
+      </div>
+
+      <div class="mb-4">
+
+        <label
+          for="status"
+          class="form-label fw-semibold">
+
+          {{ text.form.status }}
+
+        </label>
+
+        <select
+          id="status"
+          class="form-select"
+          formControlName="status"
+          [class.is-invalid]="
+            getFieldErrors('Status').length > 0
+          ">
+
+          @for (
+            status of statuses;
+            track status
+          ) {
+
+            <option [value]="status">
+              {{ statusLabels[status] }}
+            </option>
+
+          }
+
+        </select>
+
+        @if (getFieldErrors('Status').length > 0) {
+
+          <div class="invalid-feedback d-block">
+
+            @for (
+              error of getFieldErrors('Status');
+              track error
+            ) {
+              <div>{{ error }}</div>
+            }
+
+          </div>
+
+        }
+
+      </div>
+
+      <!-- Submit -->
+      <div class="d-flex justify-content-end gap-2">
+
+        <button
+          type="submit"
+          class="btn btn-primary px-4"
+          [disabled]="isSubmitting()">
+
+          @if (isSubmitting()) {
+
+            <span
+              class="spinner-border spinner-border-sm me-2"
+              aria-hidden="true">
+            </span>
+
+            Saving...
+
+          } @else {
+
+            @if (isEditMode()) {
+              {{ text.form.update }}
+            } @else {
+               {{ text.form.add }}
+            }
+
+          }
+
+        </button>
+
+      </div>
+
+    </form>
+
+  </div>
+
+</div>

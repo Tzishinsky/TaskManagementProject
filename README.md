@@ -10,7 +10,7 @@
 - Bootstrap 5
 - Bootstrap Icons
 - Reactive Forms
-- NgRx
+- NgRx *
 
 ### Server
 - ASP.NET Core
@@ -24,15 +24,6 @@
 - Node.js ו-npm
 - Angular CLI
 - .NET 10 SDK
-
-בדיקת גרסאות:
-
-```bash
-node --version
-npm --version
-ng version
-dotnet --version
-```
 
 ## הרצת השרת
 
@@ -72,8 +63,6 @@ ng serve
 http://localhost:4200
 ```
 
-> יש להתאים את `cd client` לשם תיקיית ה-Client בפועל אם היא שונה בפרויקט.
-
 ## מבנה הפרויקט
 
 ```text
@@ -112,6 +101,7 @@ TaskManagement/
 
 ## State Management
 
+(זו צורת הפיתרון הנכונה שמפאת חוסר הזמן לא הגעתי אליה )
 המשימות מנוהלות באמצעות NgRx Store.
 
 הזרימה המרכזית:
@@ -146,23 +136,4 @@ POST   /api/tasks
 PUT    /api/tasks/{id}
 DELETE /api/tasks/{id}
 ```
-
-## בדיקה מקומית
-
-1. להפעיל את השרת.
-2. לוודא ש-Swagger נטען.
-3. להפעיל את Angular.
-4. לפתוח את האפליקציה בדפדפן.
-5. לוודא שרשימת המשימות נטענת.
-6. ליצור משימה חדשה.
-7. לערוך משימה.
-8. למחוק משימה.
-9. לבדוק שגיאות ולידציה.
-10. לוודא שה-State מתעדכן ללא GET מיותר לאחר פעולות CRUD.
-
-
-יש להעלות את פרויקט ה-Client ל-StackBlitz ולצרף את הקישור:
-
-```text
-[להוסיף כאן את קישור ה-StackBlitz]
-```
+ שימוש מהנה !

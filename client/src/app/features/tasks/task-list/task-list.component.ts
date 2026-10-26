@@ -29,7 +29,7 @@ export class TaskListComponent implements OnInit {
   readonly tasks = signal<Task[]>([]);
   readonly selectedTask = signal<Task | null>(null);
   readonly isLoading = signal(false);
-  readonly deletingTaskId = signal<number | null>(null);
+  readonly deletingTaskId = signal<string | null>(null);
   readonly errorMessage = signal<string | null>(null);
   readonly text = UI_TEXT;
 
@@ -65,7 +65,7 @@ export class TaskListComponent implements OnInit {
     this.selectedTask.set(task);
   }
 
-  onDelete(id: number): void {
+  onDelete(id: string): void {
   if (this.deletingTaskId() !== null) {
     return;
   }

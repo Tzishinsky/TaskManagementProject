@@ -26,7 +26,7 @@ export class TaskItemComponent {
   readonly task = input.required<Task>();
 
   readonly edit = output<Task>();
-  readonly delete = output<number>();
+  readonly delete = output<string>();
   readonly isDeleting = input(false);
   readonly text = UI_TEXT;
 

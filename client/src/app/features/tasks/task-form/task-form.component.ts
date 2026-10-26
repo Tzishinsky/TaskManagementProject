@@ -187,7 +187,7 @@ export class TaskFormComponent implements OnChanges {
   });
   }
 
-  private updateTask(id: number): void {
+  private updateTask(id: string): void {
   const request: TaskRequest = {
     ...this.taskForm.getRawValue(),
     description:
